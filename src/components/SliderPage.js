@@ -4,21 +4,20 @@ import Category from './Category'
 
 export default function SliderPage(){
     const [stat, setStat] = useState([
-        {label:"Total Points", attr:"pts", value: 50},
-        {label:"Total Assist", attr:"ast", value: 50},
-        {label:"Total Rebs", attr:"reb", value: 50},
-        {label:"Championships", attr:"champ", value: 50},
-        {label:"Championship \nDifficulty", attr:"champDiff", value: 50},
-        {label:"Most Valuable \nPlayer (MVPs)", attr:"mvp", value: 50},
-        {label:"Defensive Player \nof the Year (DPOYs)", attr:"dpoy", value: 50},
-        {label:"All-NBA teams", attr:"allNba", value: 50},
+        {label:"Points", attr:"pts", value: 50, expl: "Accounts both Total Points \nand PPG together"},
+        {label:"Assist", attr:"ast", value: 50, expl: "Accounts both Total Assists \nand APG together"},
+        {label:"Rebounds", attr:"reb", value: 50, expl: "Accounts both Total Rebounds \nand RPG together"},
+        {label:"Championships", attr:"champ", value: 50, expl: "How many Championships \ndo they have"},
+        {label:"Championship \nDifficulty", attr:"champDiff", value: 50, expl: "Accounts of all Championship difficulty \nin each of their Championship run"},
+        {label:"Most Valuable \nPlayer (MVPs)", attr:"mvp", value: 50, expl: "How many MVPs do they have"},
+        {label:"Defensive Player of \nthe Year (DPOYs)", attr:"dpoy", value: 50, expl: "How many DPOYs they have"},
+        {label:"All-NBA teams", attr:"allNba", value: 50, expl: "How many times they starred \nin an All-NBA team"},
     ])
     
     //Setting the state to an array of objects
     //Each objects has it's own props within it that you want to set for each category
     //Create a new component that would use those categories
     //Map through the objects to display the newly made components with each unique obj attributes
-
 
     const handleChange = (e, newValue, attr) => {
         setStat((prevValue) => {
@@ -67,6 +66,7 @@ export default function SliderPage(){
                         {stat.map((obj)=>{
                             return (
                             <Category 
+                            expl={obj.expl.includes('\n') ? obj.expl.split('\n').map((line, index) => <React.Fragment key={index}>{line}<br /></React.Fragment>) : obj.expl}
                             key={obj.attr}
                             handleChange={handleChange}
                             attr={obj.attr}
