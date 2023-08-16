@@ -7,9 +7,9 @@ export default function Category({handleChange, attr, value, label, expl}){
    
     return( 
         <li style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-            <div style={{display:'flex', gap: '5px'}}>
+            <div style={{display:'flex', gap: '5px',}}>
                 {label}
-                <div>
+                <div >
                     <Tooltip title={expl} arrow>
                         <InfoOutlinedIcon style={{width: '40%'}} />
                     </Tooltip>
