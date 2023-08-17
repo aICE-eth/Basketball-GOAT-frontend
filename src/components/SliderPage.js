@@ -1,14 +1,12 @@
-import {Box, Divider} from "@mui/material";
-import React, { useState } from "react";
+import {Box, Button, Divider} from "@mui/material";
+import React, { useState, useEffect } from "react";
 import Category from './Category'
-import { Formik, Form } from 'formik';
-
 
 export default function SliderPage(){
     const [stat, setStat] = useState([
         {label:"Points💯", attr:"pts", value: 50, expl: "Accounts both Total Points \nand PPG together"},
         {label:"Assist🅰️", attr:"ast", value: 50, expl: "Accounts both Total Assists \nand APG together"},
-        {label:"Rebounds🛹", attr:"reb", value: 50, expl: "Accounts both Total Rebounds \nand RPG together"},
+        // {label:"Rebounds🛹", attr:"reb", value: 50, expl: "Accounts both Total Rebounds \nand RPG together"},
         {label: "Blocks🤚", attr:"blk", value: 50, expl: "All time blocks and \nBPG together"},
         {label: "Steals🥷", attr:"stl", value: 50, expl: "All time steals and \nSPG together"},
         {label:"Championships💍", attr:"champ", value: 50, expl: "How many Championships \ndo they have"},
@@ -26,7 +24,6 @@ export default function SliderPage(){
 
     const handleChange = (e, newValue, attr) => {
         setStat((prevValue) => {
-            console.log(attr, newValue)
             let arr = [...prevValue]
             arr.forEach((obj)=> {
                 if(obj.attr === attr){
@@ -36,6 +33,29 @@ export default function SliderPage(){
             return arr;
         })
     }
+
+      const handleRankingClick = async () => {
+        try {
+            const valuesArray = stat.map(item => item.value); // Extracting 'value' from each object
+            const response = await fetch('http://127.0.0.1:5000/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({values: valuesArray}) // Sending the array of 'value' to the backend, must be in an object instead of array
+            });
+    
+            if (response.ok) {
+                const rankedPlayers = await response.json();
+                console.log('Ranked players:', rankedPlayers);
+            } else {
+                console.error('Failed to fetch data from the server.');
+            }
+        } catch (error) {
+            console.error('An error occurred:', error);
+        }
+    };
+    
 
     return(
         <div>
@@ -51,14 +71,14 @@ export default function SliderPage(){
                 <li style={{fontSize: '35px', color:'white'}}>GOATED OUT</li> 
              </ul>
              <div style={{
-                padding: '25px 30px 0 30px', 
+                padding: '20px 25px 0 25px', 
                 display:'flex', 
              }}>
                 <Box style={{
                     backgroundColor: 'lightgray',
-                    height: '82.5vh',
+                    height: '85vh',
                     width: '40%',
-                    padding: '20px',
+                    padding: '7px 10px 10px 10px',
                     borderRadius: 15
                 }}>
                     <ul style={{
@@ -66,7 +86,8 @@ export default function SliderPage(){
                         display:'flex',
                         flexDirection: 'column',
                         justifyContent:'space-between',
-                        height: '100%'
+                        height: '100%',
+                        gap: 0.4
                     }}>
                         <li><strong>How it works🏀</strong><br />Each category has a scale from 0 to💯. Adjust the values as much as you like with 0 being the least important, and 100 being the most important to becoming the G.O.A.T.🐐🔥 </li>
                         <Divider style={{color:'black'}} />
@@ -83,8 +104,12 @@ export default function SliderPage(){
                             <React.Fragment key={index}>{line}<br /></React.Fragment>) : obj.label}
                             />
                             )
-                        })} 
-                          
+                        })}
+                        <Button 
+                        variant="contained"
+                        onClick={handleRankingClick}>
+                        🔥FUCK AROUND AND FIND OUT🔥
+                        </Button> 
                     </ul>
                 </Box>
              </div>
