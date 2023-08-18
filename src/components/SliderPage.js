@@ -1,19 +1,21 @@
 import {Box, Button, Divider} from "@mui/material";
 import React, { useState, useEffect } from "react";
-import Category from './Category'
+import Category from './Category';
+import Ranking from './Ranking'
+import { Link } from "react-router-dom";
 
 export default function SliderPage(){
     const [stat, setStat] = useState([
         {label:"Points💯", attr:"pts", value: 50, expl: "Accounts both Total Points \nand PPG together"},
         {label:"Assist🅰️", attr:"ast", value: 50, expl: "Accounts both Total Assists \nand APG together"},
         // {label:"Rebounds🛹", attr:"reb", value: 50, expl: "Accounts both Total Rebounds \nand RPG together"},
-        {label: "Blocks🤚", attr:"blk", value: 50, expl: "All time blocks and \nBPG together"},
         {label: "Steals🥷", attr:"stl", value: 50, expl: "All time steals and \nSPG together"},
+        {label: "Blocks🤚", attr:"blk", value: 50, expl: "All time blocks and \nBPG together"},
         {label:"Championships💍", attr:"champ", value: 50, expl: "How many Championships \ndo they have"},
         {label:"Championship \nDifficulty🏆", attr:"champDiff", value: 50, expl: "Accounts of all Championship difficulty \nin each of their Championship run"},
         {label:"Most Valuable \nPlayer (MVP)🏅", attr:"mvp", value: 50, expl: "How many MVPs do they have"},
-        {label:"Finals Most \nValuable Player \n(FMVP)🥇", attr:"fmvp", value: 50, expl: "How many FMVPs do they have"},
         {label:"Defensive Player of \nthe Year (DPOY)🎖️", attr:"dpoy", value: 50, expl: "How many DPOYs they have"},
+        {label:"Finals Most \nValuable Player \n(FMVP)🥇", attr:"fmvp", value: 50, expl: "How many FMVPs do they have"},
         {label:"All-NBA teams⛹️", attr:"allNba", value: 50, expl: "How many times they starred \nin an All-NBA team"},
     ])
     
@@ -34,6 +36,8 @@ export default function SliderPage(){
         })
     }
 
+    const [data, setData] = useState([])
+
       const handleRankingClick = async () => {
         try {
             const valuesArray = stat.map(item => item.value); // Extracting 'value' from each object
@@ -47,6 +51,7 @@ export default function SliderPage(){
     
             if (response.ok) {
                 const rankedPlayers = await response.json();
+                setData(rankedPlayers)
                 console.log('Ranked players:', rankedPlayers);
             } else {
                 console.error('Failed to fetch data from the server.');
@@ -55,7 +60,6 @@ export default function SliderPage(){
             console.error('An error occurred:', error);
         }
     };
-    
 
     return(
         <div>
@@ -68,16 +72,18 @@ export default function SliderPage(){
                 backgroundColor: 'black'
                 }}>
                 <li style={{fontSize: '35px'}}>🏀🐐</li>
-                <li style={{fontSize: '35px', color:'white'}}>GOATED OUT</li> 
+                <li style={{fontSize: '35px', color:'white'}}>GOATED OUT</li>
+                <li><Link to = '/'><Button variant="contained">HOME</Button></Link></li>
              </ul>
              <div style={{
                 padding: '20px 25px 0 25px', 
-                display:'flex', 
+                display:'flex',
+                gap: 30, 
              }}>
                 <Box style={{
                     backgroundColor: 'lightgray',
                     height: '85vh',
-                    width: '40%',
+                    width: '60%',
                     padding: '7px 10px 10px 10px',
                     borderRadius: 15
                 }}>
@@ -107,11 +113,14 @@ export default function SliderPage(){
                         })}
                         <Button 
                         variant="contained"
-                        onClick={handleRankingClick}>
-                        🔥FUCK AROUND AND FIND OUT🔥
+                        onClick={handleRankingClick}
+                        style={{marginTop: 10}}>
+                        🔥FIND OUT YOUR TOP 10🔥
                         </Button> 
                     </ul>
                 </Box>
+                
+                <Ranking data={data} />
              </div>
         </div>
     )

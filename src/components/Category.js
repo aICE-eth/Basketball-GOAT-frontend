@@ -29,7 +29,7 @@ export default function Category({handleChange, attr, value, label, expl}){
                 </Grid>
                 <Grid>
                     <div>
-                        <Paper style={{padding: '2px 3px 2px 3px', display:'flex', alignItems:'center'}}>{value}</Paper>
+                        <Paper style={{border: '1px solid black', padding: '2px 3px 2px 3px', display:'flex', alignItems:'center'}}>{value}</Paper>
                     </div>
                 </Grid>
                 </Grid>
