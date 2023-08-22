@@ -29,7 +29,7 @@ export default function Category({ handleChange, attr, value, label, expl }) {
   };
 
   return (
-    <li style={{ paddingTop: '5px', paddingBottom:'5px' }}>
+    <li style={{ marginTop: '10px', paddingTop: '5px', paddingBottom:'5px' }}>
       <Grid container>
         <Grid md={4}>
           <div style={{ display: 'flex', gap: '5px' }}>
@@ -58,9 +58,9 @@ export default function Category({ handleChange, attr, value, label, expl }) {
             <form onSubmit={formik.handleSubmit}
             style={{width:'50px', display:'flex', alignItems:'center', justifyConten:'center'}}>
               <TextField
-                style={{width:'50px',height:'50px', display:'flex', alignItems:'center', justifyConten:'center'}}
+                style={{width:'60px',height:'45px', display:'flex', alignItems:'center', justifyConten:'center'}}
                 name="inputValue"
-                label="value"
+                label="Value"
                 variant="filled"
                 size="small"
                 value={formik.values.inputValue}

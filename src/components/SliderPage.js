@@ -96,7 +96,7 @@ export default function SliderPage(){
                         gap: 0.4
                     }}>
                         <li><strong>How it works🏀</strong><br />Each category has a scale from 0 to💯. Adjust the values as much as you like with 0 being the least important, and 100 being the most important to becoming the G.O.A.T.🐐🔥 </li>
-                        <Divider style={{color:'black'}} />
+                        <Divider style={{color:'black', marginTop:'10px'}} />
                         {stat.map((obj)=>{
                             return (
                             <Category 
