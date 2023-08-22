@@ -54,14 +54,14 @@ export default function Category({ handleChange, attr, value, label, expl }) {
             marks={true}
           />
         </Grid>
-        <Grid md={2}>
+        <Grid md={1}>
             <form onSubmit={formik.handleSubmit}
-            style={{width:'50px', display:'flex', alignItems:'center', justifyConten:'center'}}>
+            style={{width:'57px', fontWeight:'bold'}}>
               <TextField
-                style={{width:'60px',height:'45px', display:'flex', alignItems:'center', justifyConten:'center'}}
+                style={{width:'57px', fontWeight:'bold'}}
                 name="inputValue"
                 label="Value"
-                variant="filled"
+                variant="outlined"
                 size="small"
                 value={formik.values.inputValue}
                 onChange={handleInputChange}
