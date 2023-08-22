@@ -39,7 +39,7 @@ export default function Ranking({data}){
       const rows = data.map((attr) => {
         return createData(
             attr.Player,
-            <img style={{width: '20%'}}src= {`/bball/${attr.Player}.png`}></img>,
+            <img style={{width: '100px'}}src= {`/bball/${attr.Player}.png`}></img>,
         )
       })
 
@@ -48,13 +48,13 @@ export default function Ranking({data}){
             <Table sx={{ minWidth: 300 }} aria-label="customized table">
                 <TableHead>
                 <TableRow>
-                    <StyledTableCell>Ranking in Order</StyledTableCell>
+                    <StyledTableCell >Ranking in Order</StyledTableCell>
                 </TableRow>
                 </TableHead>
                 <TableBody>
                 {rows.map((row, id) => (
                     <StyledTableRow key={id}>
-                    <StyledTableCell style={{display:'flex'}} scope="row">
+                    <StyledTableCell style={{display:'flex', justifyContent:'space-around'}} scope="row">
                         <div>{row.name}</div>
                         <div>{row.pic}</div>
                     </StyledTableCell>
