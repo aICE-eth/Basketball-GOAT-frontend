@@ -8,9 +8,9 @@ export default function SliderPage(){
     const [stat, setStat] = useState([
         {label:"Points💯", attr:"pts", value: 50, expl: "Accounts both Total Points \nand PPG together"},
         {label:"Assist🅰️", attr:"ast", value: 50, expl: "Accounts both Total Assists \nand APG together"},
-        // {label:"Rebounds🛹", attr:"reb", value: 50, expl: "Accounts both Total Rebounds \nand RPG together"},
-        {label: "Steals🥷", attr:"stl", value: 50, expl: "All time steals and \nSPG together"},
-        {label: "Blocks🤚", attr:"blk", value: 50, expl: "All time blocks and \nBPG together"},
+        {label:"Rebounds🛹", attr:"reb", value: 50, expl: "Accounts both Total Rebounds \nand RPG together"},
+        // {label: "Steals🥷", attr:"stl", value: 50, expl: "All time steals and \nSPG together"},
+        // {label: "Blocks🤚", attr:"blk", value: 50, expl: "All time blocks and \nBPG together"},
         {label:"Championships💍", attr:"champ", value: 50, expl: "How many Championships \ndo they have"},
         {label:"Championship \nDifficulty🏆", attr:"champDiff", value: 50, expl: "Accounts of all Championship difficulty \nin each of their Championship run"},
         {label:"Most Valuable \nPlayer (MVP)🏅", attr:"mvp", value: 50, expl: "How many MVPs do they have"},
@@ -40,13 +40,17 @@ export default function SliderPage(){
 
       const handleRankingClick = async () => {
         try {
-            const valuesArray = stat.map(item => item.value); // Extracting 'value' from each object
+            const valuesArray = stat.map(item => item.value);
+             // Extracting 'value' from each object
             const response = await fetch('http://127.0.0.1:5000/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({values: valuesArray}) // Sending the array of 'value' to the backend, must be in an object instead of array
+                body: JSON.stringify({
+                    values: valuesArray,
+                }) 
+                // Sending the array of 'value' to the backend, must be in an object instead of array
             });
     
             if (response.ok) {
@@ -83,7 +87,7 @@ export default function SliderPage(){
                 <Box style={{
                     backgroundColor: 'lightgray',
                     height: '100%',
-                    width: '60%',
+                    width: '90%',
                     padding: '7px 10px 10px 10px',
                     borderRadius: 15
                 }}>

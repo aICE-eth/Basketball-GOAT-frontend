@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Grid } from "@mui/material";
 
 export default function Ranking({data}){
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -29,34 +30,48 @@ export default function Ranking({data}){
         },
       }));
       
-    function createData(name, pic) {
-        return { name, pic};
+    function createData(name, emoji, color) {
+        return {name, emoji, color};
       }
 
-      console.log(data)
-      
-    
-      const rows = data.map((attr) => {
+      const rows = data.map((player) => {
         return createData(
-            attr.Player,
-            <img style={{width: '100px'}}src= {`/bball/${attr.Player}.png`}></img>,
+            player.Player,
+            player.Emoji,
+            player.Color
         )
       })
+
+
 
     return (
         <TableContainer component={Paper} style={{borderRadius:15}}>
             <Table sx={{ minWidth: 300 }} aria-label="customized table">
                 <TableHead>
                 <TableRow>
-                    <StyledTableCell >Ranking in Order</StyledTableCell>
+                    <StyledTableCell style={{display:'flex', justifyContent:'space-around', alignItems:'center', fontSize:30}}>🔥HERE ARE YOUR GOATS IN ORDER🐐</StyledTableCell>
                 </TableRow>
                 </TableHead>
                 <TableBody>
                 {rows.map((row, id) => (
                     <StyledTableRow key={id}>
-                    <StyledTableCell style={{display:'flex', justifyContent:'space-around'}} scope="row">
-                        <div>{row.name}</div>
-                        <div>{row.pic}</div>
+                    <StyledTableCell style={{display:'flex', justifyContent:'space-around', alignItems:'center'}} scope="row">
+                        <Grid container>
+                          <Grid md={6} style={{display:'flex', justifyContent:'space-around', alignItems:'center'}}>
+                            <div style={{
+                              textShadow: `-2.5px 0 ${row.color}, 0 1px ${row.color}, 1px 0 ${row.color}, 0 -1px ${row.color}`,
+                              color: 'white',
+                              fontSize: 24,
+                              fontWeight:'bold'
+                          
+                            }}>
+                              {row.name}
+                            </div>
+                          </Grid>
+                          <Grid md={6} style={{display:'flex', justifyContent:'space-around', alignItems:'center'}}>
+                            <div style={{fontSize:'40px'}}>{row.emoji}</div>
+                          </Grid>
+                        </Grid>
                     </StyledTableCell>
     
                     </StyledTableRow>
