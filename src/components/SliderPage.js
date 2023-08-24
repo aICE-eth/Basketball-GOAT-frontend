@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import Category from './Category';
 import Ranking from './Ranking'
 import { Link } from "react-router-dom";
+import CustomPieChart from "./CustomPieChart";
+import { useDataContext } from "./DataContext";
 
 export default function SliderPage(){
     const [stat, setStat] = useState([
@@ -15,7 +17,7 @@ export default function SliderPage(){
         {label:"Championship \nDifficulty🏆", attr:"champDiff", value: 50, expl: "Accounts of all Championship difficulty \nin each of their Championship run"},
         {label:"Most Valuable \nPlayer (MVP)🏅", attr:"mvp", value: 50, expl: "How many MVPs do they have"},
         {label:"Defensive Player of \nthe Year (DPOY)🎖️", attr:"dpoy", value: 50, expl: "How many DPOYs they have"},
-        {label:"Finals Most \nValuable Player \n(FMVP)🥇", attr:"fmvp", value: 50, expl: "How many FMVPs do they have"},
+        {label:"Finals MVP (FMVP)🥇", attr:"fmvp", value: 50, expl: "How many FMVPs do they have"},
         {label:"All-NBA teams⛹️", attr:"allNba", value: 50, expl: "How many times they starred \nin an All-NBA team"},
     ])
     
@@ -36,6 +38,8 @@ export default function SliderPage(){
         })
     }
 
+    const { updateData } = useDataContext();
+
     const [data, setData] = useState([])
 
       const handleRankingClick = async () => {
@@ -55,7 +59,7 @@ export default function SliderPage(){
     
             if (response.ok) {
                 const rankedPlayers = await response.json();
-                setData(rankedPlayers)
+                updateData(rankedPlayers)
                 console.log('Ranked players:', rankedPlayers);
             } else {
                 console.error('Failed to fetch data from the server.');
@@ -64,6 +68,15 @@ export default function SliderPage(){
             console.error('An error occurred:', error);
         }
     };
+
+    const [pieChartData, setPieChartData] = useState([]);
+
+    useEffect(() => {
+      // Create pie chart data from the stat array
+      const chartData = stat.map((obj) => ({ label: obj.label, value: obj.value }));
+      setPieChartData(chartData);
+    }, [stat]);
+
 
     return(
         <div>
@@ -76,18 +89,17 @@ export default function SliderPage(){
                 backgroundColor: 'black'
                 }}>
                 <li style={{fontSize: '35px'}}>🏀🐐</li>
-                <li style={{fontSize: '35px', color:'white'}}>GOATED OUT</li>
+                <li style={{fontSize: '35px', color:'white', fontWeight:'500'}}>GOATED OUT</li>
                 <li><Link to = '/'><Button variant="contained">HOME</Button></Link></li>
              </ul>
              <div style={{
                 padding: '20px 25px 0 25px', 
-                display:'flex',
-                gap: 30, 
+                display:'flex', 
              }}>
                 <Box style={{
                     backgroundColor: 'lightgray',
                     height: '100%',
-                    width: '90%',
+                    width: '40%',
                     padding: '7px 10px 10px 10px',
                     borderRadius: 15
                 }}>
@@ -115,16 +127,20 @@ export default function SliderPage(){
                             />
                             )
                         })}
-                        <Button 
-                        variant="contained"
-                        onClick={handleRankingClick}
-                        style={{marginTop: 10}}>
-                        🔥FIND OUT YOUR TOP 10🔥
-                        </Button> 
+                        <Link to = '/Ranking'>
+                            <Button 
+                            variant="contained"
+                            onClick={handleRankingClick}
+                            style={{marginTop: 10, width:'100%'}}>
+                            🔥FIND OUT YOUR TOP 10🔥
+                            </Button>
+                        </Link> 
                     </ul>
                 </Box>
                 
-                <Ranking data={data} />
+                <CustomPieChart data={pieChartData} />
+
+               
              </div>
         </div>
     )

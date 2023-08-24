@@ -19,7 +19,7 @@ export default function MainPage(){
         backgroundColor: 'black'
         }}>
             <li style={{fontSize: '35px'}}>🏀🐐</li>
-            <li style={{fontSize: '35px', color:'white'}}>GOATED OUT</li>
+            <li style={{fontSize: '35px', color:'white', fontWeight:'500'}}>GOATED OUT</li>
             <li><Link to = '/About'><Button variant="contained">ABOUT</Button></Link></li>
         </ul>
         

@@ -23,16 +23,14 @@ export default function Category({ handleChange, attr, value, label, expl }) {
 
   const handleSliderChange = (event, newValue) => {
     formik.setFieldValue('inputValue', newValue.toString());
-
-    // Update the Slider value
-    handleChange(event, newValue, attr);
+    handleChange(event, newValue, attr)
   };
 
   return (
     <li style={{ marginTop: '10px', paddingTop: '5px', paddingBottom:'5px' }}>
       <Grid container>
         <Grid md={3}>
-          <div style={{ display: 'flex', gap: '5px' }}>
+          <div style={{ display: 'flex', gap: '5px', fontWeight:'bold' }}>
             {label}
             <div>
               <Tooltip title={expl} arrow>
@@ -50,14 +48,15 @@ export default function Category({ handleChange, attr, value, label, expl }) {
           <div>🤮</div>
           <Slider
             onChange={handleSliderChange}
+            // onChangeCommitted={handleSliderChangeCommitted} // Use onChangeCommitted event
             value={value}
             aria-label="Small"
             valueLabelDisplay="auto"
             style={{ width: '90%' }}
-            step={10}
-            min={0}
-            max={100}
-            marks={true}
+            // step={10}
+            // min={0}
+            // max={100}
+            // marks={true}
           />
           <div>🤩</div>
         </Grid>
