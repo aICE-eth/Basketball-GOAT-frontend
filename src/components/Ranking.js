@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,8 +7,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { useDataContext } from "./DataContext";
+import Confetti from 'react-confetti'
+import { Link } from "react-router-dom";
 
 export default function Ranking(){
 
@@ -55,25 +57,66 @@ export default function Ranking(){
         return "";
       };
 
+      const [showConfetti, setShowConfetti] = useState(true); // State to control confetti visibility
+
+      useEffect(() => {
+        // Start the confetti
+        if (showConfetti) {
+          setTimeout(() => {
+            setShowConfetti(false); // After 5 seconds, hide the confetti
+          }, 6000);
+        }
+      }, [showConfetti]);
+
+      const confettiSource = {
+        x: window.innerWidth / 2,  // Center of the screen horizontally
+        y: window.innerHeight,     // Bottom of the screen vertically
+      };
 
     return (
-        <TableContainer component={Paper} style={{borderRadius:15, display:'flex',justifyContent:'center', color:'black'}}>
-            <Table sx={{ minWidth: 300 }} style={{borderRadius:15, width:'80%'}} aria-label="customized table">
+     <div style={{background:'black', height:'100vh', display:'flex', justifyContent: 'center', gap:10}}>
+      <div style={{
+        fontSize:55,
+        color:'white',
+        width:'20vh',
+        fontWeight:'bold'
+      }}>
+        <br />
+      Y<br />
+      O<br />
+      U<br />
+      R<br />
+      <br />
+      T<br />
+      O<br />
+      P<br />
+      </div>
+      
+      {showConfetti && (
+        <Confetti
+          confettiSource={confettiSource}
+          numberOfPieces={200}
+          gravity={0.000001}
+          width={window.innerWidth}
+        />
+      )}
+ 
+        <TableContainer component={Paper} style={{borderRadius:15, width:'70%'}}>
+            <Table sx={{ minWidth: 300 }} style={{borderRadius:15,  }} aria-label="customized table">
                 <TableHead>
-                <TableRow>
+                <TableRow >
                     <StyledTableCell align="center"style={{
-                      fontSize:24,
+                      fontSize:20,
                       }}>
                         Ranking🏅
                         </StyledTableCell>
                     <StyledTableCell align ='center' style={{
-                      fontSize:24,
-                      
+                      fontSize:20,
                       }}>
                       NBA Player🏀
                       </StyledTableCell>
                       <StyledTableCell align ='center' style={{
-                      fontSize:24,
+                      fontSize:20,
                       }}>
                       Team⛹️‍♂️
                       </StyledTableCell>
@@ -82,40 +125,35 @@ export default function Ranking(){
                 <TableBody>
                 {rows.map((row, id) => (
                     <StyledTableRow key={id}>
-                    <StyledTableCell align='left' component="th" scope="row">
-                        <Grid container style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-                          <Grid style={{display:'flex', alignItems:'center'}}>
-                              <div style={{
-                                color:'gold', 
-                                textShadow: `-2px 0 white, 0 1px white, 1px 0 white, 0 -1px white`,
-                                fontSize:26,
-                                fontWeight:'bold'}}>
-                              {row.rank}.
-                              </div>
-                          </Grid>
-                        </Grid>
+                    <StyledTableCell align='center' component="th" scope="row">
+                      <div style={{
+                        color:'gold', 
+                        textShadow: `-2px 0 white, 0 1px white, 1px 0 white, 0 -1px white`,
+                        fontSize:22,
+                        fontWeight:'bold'}}>
+                      {row.rank}.
+                      </div>
                     </StyledTableCell>
                     
-                    <StyledTableCell align='left'> 
+                    <StyledTableCell align='center'> 
                       <div style={{
                         display:'flex',
-                        justifyContent:'flex-start',
+                        justifyContent:'center',
                         gap:5,
-                        fontSize:26,
-                        paddingLeft:250
+                        fontSize:22,
                       }}>
+                        {getMedalEmoji(row.rank)}
                         <div style={{
                         color:'white', 
-                        fontSize: 24,
+                        fontSize: 22,
                         fontWeight:'bold', 
                         textShadow: `-4px 0 ${row.color}, 0 1px ${row.color}, 1px 0 ${row.color}, 0 -1px ${row.color}`}}>
                             {row.name}
                         </div>
-                        {getMedalEmoji(row.rank)}
                       </div>
                     </StyledTableCell >
                         
-                    <StyledTableCell align="left" style={{paddingLeft:100}}>
+                    <StyledTableCell align="center" >
                       <div style={{fontSize:20,fontWeight:'bold', color:`${row.color}`}}>{row.emoji}</div>
                     </StyledTableCell>
                     </StyledTableRow>
@@ -124,5 +162,31 @@ export default function Ranking(){
                 </TableBody>
             </Table>
         </TableContainer>
+      <div style={{
+        fontSize:55,
+        color:'white',
+        width:'20vh',
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'flex-end',
+        fontWeight:'bold',
+        paddingTop:'10px',
+        gap:28
+      }}>
+      
+      <Link to='/SliderPage' style={{fontSize:20}}><Button variant='contained'>back</Button></Link>
+  
+      T<br />
+      E<br />
+      N<br />
+      <br />
+      G<br />
+      O<br />
+      A<br />
+      T<br />
+      
+      </div>                   
+
+        </div>
         );
 }

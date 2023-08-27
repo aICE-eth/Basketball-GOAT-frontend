@@ -1,4 +1,4 @@
-import { Button } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -18,7 +18,12 @@ export default function About(){
                 <li style={{fontSize: '35px', color:'white', fontWeight:'500'}}>GOATED OUT</li>
                 <li><Link to = '/'><Button variant="contained">HOME</Button></Link></li>
              </ul>
-             <img src='/bball/kobeBG.png'></img>
+             <Box style={{
+                color:'lightgray',
+                width:'100%'
+                }}>
+                
+             </Box>
         </div>
     )
 }

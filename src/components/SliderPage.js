@@ -99,7 +99,7 @@ export default function SliderPage(){
                 <Box style={{
                     backgroundColor: 'lightgray',
                     height: '100%',
-                    width: '40%',
+                    width: '100%',
                     padding: '7px 10px 10px 10px',
                     borderRadius: 15
                 }}>
