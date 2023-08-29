@@ -13,14 +13,14 @@ export default function MainPage(){
         <ul 
         style={{listStyleType:'none', 
         display: 'flex', 
-        justifyContent: 'space-between', 
+        justifyContent:'center',
         alignItems: 'center',
         padding: '10px 30px 15px 30px',
         backgroundColor: 'black'
         }}>
-            <li style={{fontSize: '35px'}}>🏀🐐</li>
+            <li style={{fontSize: '35px'}}>🏀</li>
             <li style={{fontSize: '35px', color:'white', fontWeight:'500'}}>GOATED OUT</li>
-            <li><Link to = '/About'><Button variant="contained">ABOUT</Button></Link></li>
+            <li style={{fontSize: '35px'}}>🐐</li>
         </ul>
         
         <div style={{
