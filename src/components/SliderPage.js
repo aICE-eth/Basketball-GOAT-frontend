@@ -14,7 +14,7 @@ export default function SliderPage(){
         // {label: "Steals🥷", attr:"stl", value: 50, expl: "All time steals and \nSPG together"},
         // {label: "Blocks🤚", attr:"blk", value: 50, expl: "All time blocks and \nBPG together"},
         {label:"Championships💍", attr:"champ", value: 50, expl: "How many Championships \ndo they have"},
-        {label:"Championship \nDifficulty🏆", attr:"champDiff", value: 50, expl: "Accounts of all Championship difficulty \nin each of their Championship run"},
+        {label:"Championship \nDifficulty🏆", attr:"champDiff", value: 50, expl: "How hard is it to win their championship, \n accounts for all of them"},
         {label:"Most Valuable \nPlayer (MVP)🏅", attr:"mvp", value: 50, expl: "How many MVPs do they have"},
         {label:"Defensive Player of \nthe Year (DPOY)🎖️", attr:"dpoy", value: 50, expl: "How many DPOYs they have"},
         {label:"Finals MVP (FMVP)🥇", attr:"fmvp", value: 50, expl: "How many FMVPs do they have"},

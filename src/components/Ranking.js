@@ -63,8 +63,8 @@ export default function Ranking(){
         // Start the confetti
         if (showConfetti) {
           setTimeout(() => {
-            setShowConfetti(false); // After 5 seconds, hide the confetti
-          }, 6000);
+            setShowConfetti(false);
+          }, 3400);
         }
       }, [showConfetti]);
 
@@ -98,6 +98,7 @@ export default function Ranking(){
           numberOfPieces={200}
           gravity={0.000001}
           width={window.innerWidth}
+          initialVelocityY={10}
         />
       )}
  
