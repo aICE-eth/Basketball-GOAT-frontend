@@ -12,8 +12,8 @@ function App() {
         <div>
           <Routes>
             <Route path ='/' element={<MainPage />}></Route>
-            <Route path = '/SliderPage' element ={<SliderPage />} />
-            <Route path = '/Ranking' element ={<Ranking />} />
+            <Route path = '/slider-page' element ={<SliderPage />} />
+            <Route path = '/ranking' element ={<Ranking />} />
           </Routes>
         </div>
       </Router>

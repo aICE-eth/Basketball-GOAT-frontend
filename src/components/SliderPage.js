@@ -46,7 +46,7 @@ export default function SliderPage(){
         try {
             const valuesArray = stat.map(item => item.value);
              // Extracting 'value' from each object
-            const response = await fetch('https://bball-ranking-api.onrender.com', {
+            const response = await fetch('http://127.0.0.1:5000/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -127,7 +127,7 @@ export default function SliderPage(){
                             />
                             )
                         })}
-                        <Link to = '/Ranking'>
+                        <Link to = '/ranking'>
                             <Button 
                             variant="contained"
                             onClick={handleRankingClick}

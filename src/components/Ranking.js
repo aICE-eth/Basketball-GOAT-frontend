@@ -15,8 +15,7 @@ import { Link } from "react-router-dom";
 export default function Ranking(){
 
   const { data } = useDataContext();
-  console.log(data)
-
+  
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
           backgroundColor: theme.palette.common.black,
@@ -64,7 +63,7 @@ export default function Ranking(){
         if (showConfetti) {
           setTimeout(() => {
             setShowConfetti(false);
-          }, 3400);
+          }, 3100);
         }
       }, [showConfetti]);
 
@@ -175,7 +174,7 @@ export default function Ranking(){
         gap:28
       }}>
       
-      <Link to='/SliderPage' style={{fontSize:20}}><Button variant='contained'>back</Button></Link>
+      <Link to='/slider-page' style={{fontSize:20}}><Button variant='contained'>back</Button></Link>
   
       T<br />
       E<br />
