@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Basketball-GOAT-frontend/static/css/main.8d7ba6f0.css",
+    "main.js": "/Basketball-GOAT-frontend/static/js/main.aadc4bc5.js",
+    "static/js/787.46fd526d.chunk.js": "/Basketball-GOAT-frontend/static/js/787.46fd526d.chunk.js",
+    "index.html": "/Basketball-GOAT-frontend/index.html",
+    "main.8d7ba6f0.css.map": "/Basketball-GOAT-frontend/static/css/main.8d7ba6f0.css.map",
+    "main.aadc4bc5.js.map": "/Basketball-GOAT-frontend/static/js/main.aadc4bc5.js.map",
+    "787.46fd526d.chunk.js.map": "/Basketball-GOAT-frontend/static/js/787.46fd526d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8d7ba6f0.css",
+    "static/js/main.aadc4bc5.js"
+  ]
+}
